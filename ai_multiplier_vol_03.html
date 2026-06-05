@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>리더의 AI 곱셈법 제3호: 검색의 종말, 딥 리서치 활용법</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@100;400;600;700;900&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Pretendard', sans-serif; background-color: #f8fafc; color: #0f172a; }
+        .hero-bg { background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%); }
+        .video-wrapper { position: relative; padding-bottom: 56.25%; height: 0; border-radius: 1.5rem; overflow: hidden; box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04); }
+        .video-wrapper iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
+        .scrollbar-hide::-webkit-scrollbar { display: none; }
+        .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+        
+        /* Smooth interactions */
+        .dept-btn { transition: all 0.2s ease-in-out; }
+        .dept-btn.active { background-color: #0ea5e9; color: white; border-color: #0ea5e9; box-shadow: 0 4px 6px -1px rgba(14, 165, 233, 0.3); }
+        .dept-btn:not(.active):hover { background-color: #f1f5f9; border-color: #cbd5e1; }
+        
+        /* DSR Logo Style */
+        .dsr-logo { font-family: 'Pretendard', sans-serif; font-weight: 900; letter-spacing: -0.05em; display: flex; align-items: center; }
+        .dsr-logo span { color: #0284c7; padding: 0 2px; }
+        .dsr-logo .pipe { color: #cbd5e1; font-weight: 200; margin: 0 4px; }
+    </style>
+</head>
+<body class="overflow-x-hidden selection:bg-blue-200 selection:text-blue-900">
+
+    <nav class="fixed top-0 w-full z-50 px-6 lg:px-10 py-4 flex justify-between items-center bg-white/90 backdrop-blur-md border-b border-slate-200 shadow-sm transition-all">
+        <div class="flex items-center gap-4">
+            <img src="DSR_파란바_배경없음.png" alt="DSR Logo" class="h-8 object-contain" onerror="this.outerHTML='<div class=\'dsr-logo text-3xl\'><span>D</span><span class=\'pipe\'>|</span><span>S</span><span class=\'pipe\'>|</span><span>R</span></div>'">
+            <div class="border-l border-slate-300 pl-4">
+                <span class="text-xl font-black tracking-tight text-slate-900 block leading-none uppercase">AI Multiplier</span>
+                <span class="text-[10px] text-blue-600 font-bold tracking-[0.2em] uppercase">Intelligence for Leaders</span>
+            </div>
+        </div>
+        <div class="hidden md:flex items-center gap-4">
+            <span class="text-xs font-semibold text-slate-500 tracking-wider">Premium Newsletter</span>
+            <div class="text-[11px] font-bold text-slate-700 tracking-widest uppercase bg-slate-100 border border-slate-200 px-4 py-1.5 rounded-full shadow-inner">
+                Phase 1 / Vol. 03
+            </div>
+        </div>
+    </nav>
+
+    <main class="pt-28 pb-24">
+        <section class="hero-bg py-24 px-6 mb-20 border-b border-blue-100/50 relative overflow-hidden">
+            <div class="absolute top-0 left-0 w-full h-full bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0IiBoZWlnaHQ9IjQiPgo8cmVjdCB3aWR0aD0iNCIgaGVpZ2h0PSI0IiBmaWxsPSIjZmZmIiBmaWxsLW9wYWNpdHk9IjAiLz4KPHBhdGggZD0iTTAgMEw0IDRaIiBzdHJva2U9IiM5NGExYjIiIHN0cm9rZS1vcGFjaXR5PSIwLjA1IiBzdHJva2Utd2lkdGg9IjEiLz4KPC9zdmc+')] opacity-50 pointer-events-none"></div>
+            <div class="max-w-5xl mx-auto relative z-10 text-center md:text-left">
+                <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-100/80 text-blue-800 text-[11px] font-black uppercase tracking-widest mb-8 border border-blue-200 shadow-sm backdrop-blur-sm">
+                    Executive Focus
+                </div>
+                <h1 class="text-5xl md:text-7xl font-black mb-8 leading-[1.25] tracking-tight text-slate-900">
+                    검색은 끝났습니다,<br>
+                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-sky-500">'딥 리서치'</span>로 보고서를<br class="md:hidden">
+                    <span class="whitespace-nowrap">받으십시오.</span>
+                </h1>
+                <p class="text-lg md:text-xl text-slate-600 max-w-3xl leading-relaxed font-medium mx-auto md:mx-0">
+                    키워드를 검색하던 시대는 끝났습니다. AI가 수십 개의 출처를 교차 검증해 박사급 보고서를 작성합니다. 리더는 검색자가 아니라 <strong class="text-blue-700">'리서치 디렉터(Research Director)'</strong>가 되어 질문을 설계하고 결과를 검증해야 합니다.
+                </p>
+            </div>
+        </section>
+
+        <section class="max-w-6xl mx-auto px-6 mb-32">
+            <div class="bg-white rounded-[2.5rem] p-8 md:p-14 shadow-[0_20px_50px_-12px_rgba(0,0,0,0.05)] border border-slate-100 relative overflow-hidden">
+                <div class="absolute -top-40 -right-40 w-96 h-96 bg-blue-50 rounded-full blur-3xl z-0"></div>
+                
+                <div class="relative z-10">
+                    <div class="flex items-center gap-3 mb-6">
+                        <div class="w-1 h-8 bg-blue-600 rounded-full"></div>
+                        <h2 class="text-2xl md:text-3xl font-black text-slate-900 tracking-tight">앞으로의 여정: 리더의 AI 전략 로드맵</h2>
+                    </div>
+                    <p class="text-slate-600 mb-12 leading-relaxed max-w-4xl text-lg">
+                        본 리포트는 실무진의 AI 활용 방식을 이해하고, 리더 본인의 전문성을 통해 시스템을 지휘하는 3단계 마스터 로드맵을 제공합니다. 매 호마다 영상 통찰력(Radar), 실무 검증법(해독기), 실전 지휘 미션(Action Lab)이 고정 제공됩니다.
+                    </p>
+                    
+                    <div class="grid lg:grid-cols-3 gap-6">
+                        <!-- Phase 1 -->
+                        <div class="bg-blue-50/50 p-6 rounded-2xl border border-blue-100 relative shadow-sm">
+                            <span class="text-xs font-black uppercase tracking-wider text-blue-600 mb-2 block">Phase 1. 지휘권 확보</span>
+                            <h4 class="text-base font-bold text-slate-900 mb-4 pb-3 border-b border-blue-200">소통의 해상도 높이기</h4>
+                            <ul class="space-y-3 text-sm">
+                                <li class="flex items-start gap-2">
+                                    <strong class="text-slate-400">Vol.01</strong> 
+                                    <span class="text-slate-500 line-through">에이전트를 지휘하는 리더의 내공</span>
+                                </li>
+                                <li class="flex items-start gap-2">
+                                    <strong class="text-slate-400">Vol.02</strong> 
+                                    <span class="text-slate-500 line-through">'바이브 코딩'의 원리와 실체</span>
+                                </li>
+                                <li class="flex items-center gap-2 relative bg-white p-2 -ml-2 rounded-lg shadow-sm border border-blue-100">
+                                    <span class="absolute -left-1 w-2 h-2 bg-blue-500 rounded-full animate-pulse"></span>
+                                    <strong class="text-blue-700 ml-2">Vol.03</strong> 
+                                    <span class="text-slate-900 font-bold">검색의 종말, '딥 리서치' 활용법</span>
+                                </li>
+                                <li class="flex items-start gap-2"><strong class="text-slate-400">Vol.04</strong> <span class="text-slate-600">우리 팀의 무기 고르기 (AI 3대장)</span></li>
+                            </ul>
+                        </div>
+                        <!-- Phase 2 -->
+                        <div class="bg-slate-50 p-6 rounded-2xl border border-slate-200 opacity-80">
+                            <span class="text-xs font-black uppercase tracking-wider text-slate-400 mb-2 block">Phase 2. 자산화</span>
+                            <h4 class="text-base font-bold text-slate-700 mb-4 pb-3 border-b border-slate-200">데이터 시각화와 맞춤 비서</h4>
+                            <ul class="space-y-3 text-sm text-slate-500">
+                                <li class="flex items-start gap-2"><strong>Vol.05</strong> <span>아티팩트로 그리는 직관적 대시보드</span></li>
+                                <li class="flex items-start gap-2"><strong>Vol.06</strong> <span>지식을 복제하는 '프로젝트' 설정</span></li>
+                                <li class="flex items-start gap-2"><strong>Vol.07</strong> <span>우리 팀만의 전문가, 'Gems' 운영</span></li>
+                                <li class="flex items-start gap-2"><strong>Vol.08</strong> <span>흩어진 사내 데이터 통합 (커넥터)</span></li>
+                            </ul>
+                        </div>
+                        <!-- Phase 3 -->
+                        <div class="bg-slate-50 p-6 rounded-2xl border border-slate-200 opacity-80">
+                            <span class="text-xs font-black uppercase tracking-wider text-slate-400 mb-2 block">Phase 3. 시스템화</span>
+                            <h4 class="text-base font-bold text-slate-700 mb-4 pb-3 border-b border-slate-200">자동화와 전략적 의사결정</h4>
+                            <ul class="space-y-3 text-sm text-slate-500">
+                                <li class="flex items-start gap-2"><strong>Vol.09</strong> <span>스스로 보고하는 '슈퍼 젬스' 파이프라인</span></li>
+                                <li class="flex items-start gap-2"><strong>Vol.10</strong> <span>노코드 시스템 엔지니어링 (Opal)</span></li>
+                                <li class="flex items-start gap-2"><strong>Vol.11</strong> <span>최종 결정의 방어벽, 'AI 레드팀'</span></li>
+                                <li class="flex items-start gap-2"><strong>Vol.12</strong> <span>대체 불가능한 리더의 본질</span></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Strategic Radar (Video Section) -->
+        <section class="max-w-6xl mx-auto px-6 mb-32">
+            <div class="grid lg:grid-cols-12 gap-10 lg:gap-16 items-start">
+                <div class="lg:col-span-7">
+                    <div class="bg-white p-2 md:p-3 rounded-[2rem] shadow-2xl border border-slate-100">
+                        <!-- 🚨 영상 ID는 추천 후보 중 선택 후 교체 (현재: placeholder) -->
+                        <div class="video-wrapper bg-slate-100 cursor-pointer group" onclick="window.open('https://youtu.be/GW8FxpeHH2o?t=880', '_blank')">
+                            <img src="https://img.youtube.com/vi/GW8FxpeHH2o/maxresdefault.jpg" alt="딥 리서치 영상" class="absolute top-0 left-0 w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
+                            
+                            <div class="absolute inset-0 flex items-center justify-center bg-black/20 group-hover:bg-black/10 transition-all z-10">
+                                <div class="w-16 h-16 bg-red-600 rounded-full flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
+                                    <svg class="w-8 h-8 text-white ml-1" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-6 flex justify-between items-center px-2">
+                        <span class="text-[11px] font-bold text-slate-400 tracking-widest uppercase">Video Insight Source</span>
+                        <span class="text-xs text-slate-500 bg-slate-100 px-3 py-1 rounded-full">AI SuperUser / OpenAI 딥 리서치팀이 말하는 사용법</span>
+                    </div>
+                </div>
+                <div class="lg:col-span-5 space-y-8 mt-8 lg:mt-0">
+                    <div>
+                        <div class="inline-block px-3 py-1 bg-blue-50 text-blue-700 text-xs font-black mb-4 rounded-md uppercase tracking-wider border border-blue-100">Strategic Radar</div>
+                        <h3 class="text-3xl font-black mb-6 text-slate-900 leading-tight">박사급 연구원을<br>10분 안에 고용하는 법</h3>
+                        <p class="text-slate-600 text-base leading-relaxed mb-6">
+                            <strong>딥 리서치(Deep Research)</strong>는 단순 검색이 아닙니다. AI가 스스로 조사 계획을 세우고, 수십 개의 웹 문서·논문·뉴스를 교차 검증한 뒤, 출처가 명시된 수십 페이지짜리 보고서를 자동으로 작성합니다.
+                        </p>
+                        <p class="text-slate-600 text-base leading-relaxed mb-8">
+                            ChatGPT뿐 아니라 <strong>Gemini, Perplexity</strong> 등 주요 AI 모두 이 기능을 제공합니다. 과거에 실무진이 하루 종일 매달리던 시장 분석, 경쟁사 조사, 기술 동향 파악이 이제 단 한 번의 명령으로 끝납니다.
+                        </p>
+                    </div>
+                    
+                    <div class="bg-slate-50 rounded-2xl p-6 border border-slate-200 shadow-sm">
+                        <h4 class="text-sm font-bold text-slate-800 uppercase tracking-widest mb-4 border-b border-slate-200 pb-2">The Leader's Role</h4>
+                        <p class="text-sm text-slate-600 leading-relaxed">
+                            딥 리서치가 만든 보고서는 그럴싸하지만, <strong>출처 신뢰도·분석의 깊이·현장 적용성</strong>을 검증할 수 있는 사람은 오직 리더뿐입니다. 리더의 역할은 정보를 '찾는 것'이 아니라, <strong>좋은 질문을 설계하고 결과물을 비판적으로 해석</strong>하는 것으로 옮겨갑니다.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Team Workflow 해독기 -->
+        <section class="max-w-6xl mx-auto px-6 mb-32">
+            <div class="bg-slate-900 rounded-[3rem] p-10 md:p-16 shadow-2xl relative overflow-hidden">
+                <div class="absolute top-0 right-0 w-[500px] h-[500px] bg-blue-600/20 rounded-full blur-[100px] -translate-y-1/2 translate-x-1/3"></div>
+                
+                <div class="relative z-10 text-white">
+                    <div class="max-w-3xl mb-12">
+                        <div class="inline-block px-3 py-1 bg-white/10 backdrop-blur-md rounded-full text-blue-300 text-xs font-black mb-6 border border-white/10 uppercase tracking-widest">Team Workflow 해독기</div>
+                        <h2 class="text-3xl md:text-4xl font-black leading-tight tracking-tight mb-4">딥 리서치 보고서를 검증하는 '3대 필터'</h2>
+                        <p class="text-slate-400 text-base leading-relaxed font-light">
+                            실무진이 AI로 만들어 온 수십 페이지 보고서를 마주했을 때, 리더는 분량과 그래프에 압도되지 말고 다음 세 가지 핵심 기준으로 필터링해야 합니다.
+                        </p>
+                    </div>
+
+                    <div class="grid md:grid-cols-3 gap-6">
+                        <!-- Filter 1 -->
+                        <div class="bg-white/5 backdrop-blur-sm border border-white/10 p-6 rounded-3xl transition-transform hover:-translate-y-1">
+                            <div class="w-10 h-10 rounded-full bg-blue-500/20 text-blue-400 flex items-center justify-center font-black mb-4">01</div>
+                            <h4 class="text-white font-bold text-sm uppercase tracking-wider mb-3">Source (출처 신뢰도)</h4>
+                            <p class="text-sm text-slate-400 leading-relaxed">
+                                "인용된 출처가 1차 자료(논문·관공서·기업 공시)인가, 단순 블로그·커뮤니티인가?"<br><br>딥 리서치는 종종 SEO 잘 된 마케팅 글을 사실처럼 인용합니다. 출처 링크를 직접 클릭해 신뢰도를 검증하십시오.
+                            </p>
+                        </div>
+                        <!-- Filter 2 -->
+                        <div class="bg-white/5 backdrop-blur-sm border border-white/10 p-6 rounded-3xl transition-transform hover:-translate-y-1">
+                            <div class="w-10 h-10 rounded-full bg-blue-500/20 text-blue-400 flex items-center justify-center font-black mb-4">02</div>
+                            <h4 class="text-white font-bold text-sm uppercase tracking-wider mb-3">Logic (분석의 깊이)</h4>
+                            <p class="text-sm text-slate-400 leading-relaxed">
+                                "정보를 단순 짜깁기한 것인가, 인과관계와 트레이드오프까지 분석했는가?"<br><br>AI는 종종 서로 모순되는 출처를 나란히 인용합니다. 핵심 주장에 반대되는 근거가 함께 검토되었는지 확인하십시오.
+                            </p>
+                        </div>
+                        <!-- Filter 3 -->
+                        <div class="bg-white/5 backdrop-blur-sm border border-white/10 p-6 rounded-3xl transition-transform hover:-translate-y-1">
+                            <div class="w-10 h-10 rounded-full bg-blue-500/20 text-blue-400 flex items-center justify-center font-black mb-4">03</div>
+                            <h4 class="text-white font-bold text-sm uppercase tracking-wider mb-3">Localization (현장 적용성)</h4>
+                            <p class="text-sm text-slate-400 leading-relaxed">
+                                "글로벌 일반론으로 끝나는가, 우리 시장·규제·고객 맥락이 반영되었는가?"<br><br>해외 사례 위주로 쏠리면 국내 적용성이 떨어집니다. 한국 시장과 우리 산업 특수성을 명령에 명시했는지 점검하십시오.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Action Lab -->
+        <section class="max-w-6xl mx-auto px-6">
+            <div class="mb-12 text-center md:text-left flex flex-col md:flex-row items-center justify-between gap-6">
+                <div>
+                    <div class="inline-flex items-center gap-2 px-3 py-1 bg-blue-600 rounded-lg text-white text-[11px] font-black mb-4 uppercase tracking-widest shadow-md">
+                        <span class="relative flex h-2 w-2">
+                          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-200 opacity-75"></span>
+                          <span class="relative inline-flex rounded-full h-2 w-2 bg-white"></span>
+                        </span>
+                        Action Lab: 오늘의 지휘 미션
+                    </div>
+                    <h2 class="text-3xl md:text-4xl font-black tracking-tight text-slate-900 mb-2">우리 팀만의 '딥 리서치 명령서' 설계하기</h2>
+                    <p class="text-slate-600 text-lg">Gemini Deep Research에 바로 입력하여 박사급 보고서를 받아볼 수 있는 <strong>마스터 리서치 프롬프트</strong>를 설계해 보십시오.</p>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-[2rem] shadow-[0_20px_50px_-12px_rgba(0,0,0,0.1)] border border-slate-200 overflow-hidden flex flex-col lg:flex-row">
+                
+                <!-- Left: Inputs -->
+                <div class="w-full lg:w-5/12 bg-slate-50 p-6 md:p-10 border-b lg:border-b-0 lg:border-r border-slate-200 flex flex-col">
+                    
+                    <div class="mb-8">
+                        <label class="text-xs font-black text-slate-500 uppercase tracking-widest mb-3 block">1. 담당 부서 선택</label>
+                        <div class="flex overflow-x-auto pb-2 scrollbar-hide gap-2 mask-linear-fade">
+                            <button onclick="changeDept('제조', event)" class="dept-btn shrink-0 px-4 py-2 rounded-xl text-sm font-bold border bg-white text-slate-600 border-slate-200 active">🏭 제조/생산</button>
+                            <button onclick="changeDept('품질', event)" class="dept-btn shrink-0 px-4 py-2 rounded-xl text-sm font-bold border bg-white text-slate-600 border-slate-200">🔎 품질관리</button>
+                            <button onclick="changeDept('기술', event)" class="dept-btn shrink-0 px-4 py-2 rounded-xl text-sm font-bold border bg-white text-slate-600 border-slate-200">💡 기술/R&D</button>
+                            <button onclick="changeDept('판매', event)" class="dept-btn shrink-0 px-4 py-2 rounded-xl text-sm font-bold border bg-white text-slate-600 border-slate-200">🤝 판매/영업</button>
+                            <button onclick="changeDept('설비', event)" class="dept-btn shrink-0 px-4 py-2 rounded-xl text-sm font-bold border bg-white text-slate-600 border-slate-200">⚙️ 설비/보전</button>
+                            <button onclick="changeDept('회계', event)" class="dept-btn shrink-0 px-4 py-2 rounded-xl text-sm font-bold border bg-white text-slate-600 border-slate-200">📊 회계/재무</button>
+                            <button onclick="changeDept('총무', event)" class="dept-btn shrink-0 px-4 py-2 rounded-xl text-sm font-bold border bg-white text-slate-600 border-slate-200">👥 총무/인사</button>
+                        </div>
+                    </div>
+
+                    <div class="space-y-6 flex-grow">
+                        <div>
+                            <label class="text-xs font-black text-slate-500 uppercase tracking-widest mb-2 block flex items-center justify-between">
+                                <span>2. Research Topic (조사 주제)</span>
+                                <span id="deptTitleBadge" class="bg-slate-200 text-slate-600 text-[10px] px-2 py-0.5 rounded">조사 주제</span>
+                            </label>
+                            <textarea id="missionContext" rows="4" class="w-full p-4 text-sm text-slate-700 bg-white border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:outline-none resize-none shadow-sm"></textarea>
+                        </div>
+
+                        <div>
+                            <label class="text-xs font-black text-blue-600 uppercase tracking-widest mb-2 block">
+                                3. Leader's Angle (리더의 분석 관점)
+                            </label>
+                            <p class="text-[11px] text-slate-500 mb-2 leading-tight">단순 정보 나열이 아니라, 리더의 의사결정에 필요한 특정 관점이나 제약조건을 입력하십시오. (우측 프롬프트에 실시간 반영)</p>
+                            <textarea id="missionVariable" rows="3" class="w-full p-4 text-sm text-slate-900 bg-blue-50/50 border border-blue-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:outline-none resize-none placeholder-slate-400 shadow-sm transition-all"></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right: Output Prompt (Terminal Style) -->
+                <div class="w-full lg:w-7/12 bg-[#0f172a] p-6 md:p-10 flex flex-col relative">
+                    <div class="flex items-center justify-between mb-6">
+                        <label class="text-xs font-black text-slate-400 uppercase tracking-widest flex items-center gap-2">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path></svg>
+                            Deep Research Prompt (For Gemini / ChatGPT)
+                        </label>
+                        <span class="text-[10px] text-blue-400 bg-blue-400/10 border border-blue-400/20 px-2 py-0.5 rounded font-mono">Research Director Level</span>
+                    </div>
+                    
+                    <div class="flex-grow relative">
+                        <pre id="finalPromptText" class="text-[13px] text-slate-300 font-mono whitespace-pre-wrap leading-relaxed overflow-y-auto scrollbar-hide h-64 lg:h-[400px] w-full focus:outline-none selection:bg-blue-500/30 selection:text-white pb-10"></pre>
+                        <div class="absolute bottom-0 left-0 w-full h-12 bg-gradient-to-t from-[#0f172a] to-transparent pointer-events-none"></div>
+                    </div>
+                    
+                    <div class="mt-6 pt-6 border-t border-slate-800 flex justify-end shrink-0">
+                        <button onclick="copyActionPrompt()" id="actionCopyBtn" class="w-full md:w-auto px-8 py-3.5 bg-blue-600 hover:bg-blue-500 text-white text-sm font-bold rounded-xl transition-all shadow-[0_0_20px_rgba(37,99,235,0.3)] flex items-center justify-center gap-2">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3"></path></svg>
+                            <span>리서치 명령서 복사 후 Gemini 실행</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 실행 가이드 섹션: 딥 리서치 활용 -->
+            <div class="mt-12 bg-white border border-blue-100 rounded-[2rem] p-8 lg:p-10 shadow-[0_10px_40px_-15px_rgba(0,0,0,0.05)] relative overflow-hidden">
+                <div class="absolute top-0 right-0 w-48 h-48 bg-blue-50 rounded-full blur-3xl -mr-10 -mt-10 pointer-events-none"></div>
+                
+                <div class="flex items-center gap-4 mb-8 border-b border-slate-100 pb-5 relative z-10">
+                    <div class="w-12 h-12 rounded-2xl bg-blue-50 border border-blue-100 flex items-center justify-center text-blue-600 shadow-sm shrink-0">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                    </div>
+                    <div>
+                        <h3 class="text-xl md:text-2xl font-black text-slate-900 tracking-tight">💡 딥 리서치, 어디서 어떻게 실행하나요? (1분 가이드)</h3>
+                        <p class="text-sm md:text-base text-slate-500 mt-1 font-medium">주요 AI 도구별 딥 리서치 진입 방법과 결과물을 100% 활용하는 비결입니다.</p>
+                    </div>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-10 relative z-10">
+                    <!-- Method 1 -->
+                    <div class="space-y-4 bg-slate-50/50 p-6 rounded-2xl border border-slate-100">
+                        <div class="inline-block px-3 py-1.5 bg-emerald-50 text-emerald-700 text-xs font-black tracking-wider rounded-lg border border-emerald-200 uppercase">추천 도구</div>
+                        <h4 class="text-lg font-bold text-slate-800">Gemini Deep Research로 실행하기</h4>
+
+                        <!-- Gemini UI 미니 일러스트 -->
+                        <div class="bg-[#EEF3FC] rounded-xl p-4 my-4">
+                            <p class="text-[11px] font-bold text-slate-500 uppercase tracking-widest mb-3">Gemini 입력창 — 이렇게 찾으세요</p>
+                            <div class="bg-white rounded-full flex items-center gap-3 px-4 py-3 shadow-sm border border-slate-200 relative">
+                                <!-- + 버튼 강조 -->
+                                <div class="relative">
+                                    <div class="w-7 h-7 rounded-full border-2 border-red-500 flex items-center justify-center text-slate-600 font-bold text-base cursor-pointer shrink-0 ring-4 ring-red-100">+</div>
+                                    <span class="absolute -top-6 -left-1 text-[10px] font-black text-red-500 whitespace-nowrap">① 여기 클릭!</span>
+                                </div>
+                                <span class="text-slate-400 text-sm flex-1">Gemini에게 물어보기</span>
+                                <span class="text-slate-400 text-xs border border-slate-200 rounded-full px-2 py-0.5">Flash ∨</span>
+                                <div class="w-6 h-6 text-slate-400">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a3 3 0 0 1 3 3v7a3 3 0 0 1-6 0V5a3 3 0 0 1 3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg>
+                                </div>
+                            </div>
+                            <!-- 드롭다운 힌트 -->
+                            <div class="mt-2 ml-4 bg-white rounded-xl shadow-md border border-slate-100 p-3 w-52 text-xs text-slate-600 space-y-2">
+                                <div class="flex items-center gap-2 text-blue-700 font-bold bg-blue-50 rounded-lg px-2 py-1.5">
+                                    <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+                                    Deep Research ← ② 선택
+                                </div>
+                                <div class="flex items-center gap-2 text-slate-400 px-2">
+                                    <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+                                    Canvas
+                                </div>
+                                <div class="flex items-center gap-2 text-slate-400 px-2">
+                                    <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                                    Gems
+                                </div>
+                            </div>
+                        </div>
+
+                        <ol class="list-decimal list-inside text-sm text-slate-600 leading-relaxed space-y-2.5">
+                            <li>PC 브라우저에서 <strong class="text-blue-700">gemini.google.com</strong> 접속 (※ 모바일 앱은 일부 기능 제한)</li>
+                            <li>입력창 좌측 <strong class="text-red-600">'+' 버튼</strong> 클릭 → 메뉴에서 <strong class="text-blue-700 bg-blue-100/50 px-1.5 py-0.5 rounded">Deep Research</strong> 선택</li>
+                            <li>위에서 복사한 마스터 프롬프트를 붙여넣고 전송</li>
+                            <li>Gemini가 <strong>'조사 계획'</strong>을 먼저 보여줍니다. 검토 후 [Start Research] 클릭</li>
+                            <li>5~10분 후 출처가 명시된 보고서 완성 → Google 문서로 즉시 내보내기 가능</li>
+                        </ol>
+                        <div class="mt-5 p-4 bg-white border border-slate-200 rounded-xl text-sm text-slate-600 shadow-sm relative overflow-hidden">
+                            <div class="absolute left-0 top-0 w-1 h-full bg-emerald-500"></div>
+                            <strong class="text-slate-800 flex items-center gap-2 mb-1">
+                                <svg class="w-4 h-4 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                                💎 Gemini만의 강점
+                            </strong>
+                            기본 플랜에서도 사용 가능하며, Gmail·Drive·NotebookLM의 사내 문서를 소스로 함께 추가해 <strong>공개 정보 + 사내 자료</strong>를 교차 분석할 수 있습니다.
+                        </div>
+                    </div>
+
+                    <!-- Method 2 -->
+                    <div class="space-y-4 bg-slate-50/50 p-6 rounded-2xl border border-slate-100">
+                        <div class="inline-block px-3 py-1.5 bg-blue-50 text-blue-700 text-xs font-black tracking-wider rounded-lg border border-blue-200 uppercase">대안 도구</div>
+                        <h4 class="text-lg font-bold text-slate-800">ChatGPT / Perplexity로 실행하기</h4>
+                        <ol class="list-decimal list-inside text-sm text-slate-600 leading-relaxed space-y-2.5">
+                            <li><strong>ChatGPT</strong>: Plus 이상 요금제에서 입력창의 <strong class="text-blue-700 bg-blue-100/50 px-1.5 py-0.5 rounded">Deep Research</strong> 모드 선택 (월 한도 있음)</li>
+                            <li><strong>Perplexity</strong>: 무료로도 일부 사용 가능. 'Research' 또는 'Deep Research' 모드 토글</li>
+                            <li>마스터 프롬프트 붙여넣기 → AI가 조사 계획을 자동으로 수립</li>
+                            <li>일반 검색보다 5~30분 더 소요되지만 출처 링크가 모두 명시됨</li>
+                            <li>결과물을 받은 후 <strong>3대 필터(출처 신뢰도·분석의 깊이·현장 적용성)</strong>로 반드시 검증</li>
+                        </ol>
+                        <div class="mt-5 p-4 bg-white border border-slate-200 rounded-xl text-sm text-slate-600 shadow-sm relative overflow-hidden">
+                            <div class="absolute left-0 top-0 w-1 h-full bg-blue-500"></div>
+                            <strong class="text-slate-800 flex items-center gap-2 mb-1">
+                                <svg class="w-4 h-4 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                                ⚡ 가장 중요한 한 가지
+                            </strong>
+                            딥 리서치는 <strong>'추가 질문'</strong>으로 진가가 드러납니다. 첫 보고서는 시작점일 뿐, "이 주장의 반대 근거는?", "한국 시장 적용 시 리스크는?"으로 후속 질문을 던지십시오.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+    </main>
+
+    <footer class="py-12 px-8 bg-slate-900 text-white border-t border-slate-800">
+        <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
+            <div class="flex flex-col items-center md:items-start">
+                <div class="bg-white px-3 py-1.5 rounded-md mb-4 inline-block">
+                    <img src="DSR_파란바_배경없음.png" alt="DSR Logo" class="h-6 object-contain" onerror="this.outerHTML='<span class=\'text-blue-600 font-black\'>D|S|R</span>'">
+                </div>
+                <p class="text-sm text-slate-400 max-w-md text-center md:text-left leading-relaxed">
+                    본 리포트는 DSR 리더의 전략적 성장을 위해 발행됩니다. 리더의 전문성은 AI 시대에 소멸되는 것이 아니라, 정보의 홍수 속에서 본질을 가려내는 리서치 디렉터의 자산이 됩니다.
+                </p>
+            </div>
+            <div class="text-[11px] text-slate-500 tracking-widest font-semibold text-center md:text-right uppercase leading-loose">
+                Copyright © 2026 DSR Corp. & DSR Wire Corp.<br>All Rights Reserved.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const deptData = {
+            '제조': {
+                title: '글로벌 스마트팩토리 도입 트렌드 리서치',
+                context: '주요 글로벌 제조 기업(Tesla, Siemens, 도요타 등)의 최근 2년간 스마트팩토리 도입 사례를 조사하고, 도입 전후의 생산성·불량률·인건비 변화를 정량 데이터로 비교 분석한 보고서를 작성하세요. 단, 한국 중견 제조업에 적용 가능한 단계별 도입 로드맵까지 도출되어야 합니다.',
+                varPlaceholder: '예: 우리는 직원 200명 규모 와이어로프 제조사로, 1차 도입 예산이 5억 원 이하이며 ROI를 18개월 이내로 회수해야 함. 이 제약 안에서 가장 우선순위가 높은 도입 영역을 추천할 것.',
+                systemPersona: '[Research Persona: McKinsey Operations Practice Partner & Industry 4.0 Analyst]',
+                task: '보고서는 ① 글로벌 동향 요약 ② 한국 시장 적용 가능성 ③ 단계별 도입 로드맵(0~6개월/6~18개월/18개월+) ④ 예상 ROI 시나리오 3가지(보수/기본/공격)의 구조로 작성하라.'
+            },
+            '품질': {
+                title: 'AI 비전 검사 도입의 ROI 및 사례 분석',
+                context: '제조업에서 AI 비전(Computer Vision) 기반 자동 불량 검사 시스템을 도입한 글로벌 사례를 5개 이상 조사하고, 도입 전 사람 검수 대비 ① 불량 검출률 ② 검사 속도 ③ 인건비 절감액의 정량적 개선 효과를 비교 분석한 보고서를 작성하세요.',
+                varPlaceholder: '예: 우리 제품은 표면이 검고 광택이 있어 일반 비전 카메라로 검출이 어려운 특성이 있음. 우리와 유사한 난이도(고광택·반사 제품)를 다룬 사례를 우선 조사하고, 적용 시 추가로 필요한 하드웨어/조명 설계까지 제언할 것.',
+                systemPersona: '[Research Persona: Deloitte Manufacturing Analytics Lead & Quality Engineering Expert]',
+                task: '보고서는 ① 도입 사례 5건 상세 비교표 ② 불량 유형별 AI 비전 적합도 매트릭스 ③ 도입 시 함정(Pitfalls) 3가지 ④ 우리 제품 적용 시 예상 정확도와 추가 투자비의 구조로 작성하라.'
+            },
+            '기술': {
+                title: '특정 기술 분야 글로벌 특허·논문 트렌드 분석',
+                context: '최근 3년간 글로벌 특허(USPTO, EPO, 한국 KIPRIS) 및 주요 학술 데이터베이스에서 [특정 기술 키워드] 관련 출원·발표 동향을 조사하고, 핵심 출원인(기업·연구소) Top 10과 기술 클러스터, 그리고 향후 2~3년 내 상용화 가능성이 높은 세부 기술 3가지를 도출한 R&D 인텔리전스 보고서를 작성하세요.',
+                varPlaceholder: '예: 우리 회사의 핵심 기술은 "초고강도 와이어로프 표면 처리"임. 우리가 보유한 기술과 직접 경쟁하거나 대체 가능한 특허만 선별하고, 회피 설계가 어려운 핵심 특허(블로킹 패턴) 3건을 식별할 것.',
+                systemPersona: '[Research Persona: Boston Consulting Group Tech Strategy Partner & IP Intelligence Analyst]',
+                task: '보고서는 ① 출원 동향 그래프 데이터 ② Top 10 출원인 비교 분석 ③ 기술 클러스터 맵 ④ 우리 회사의 IP 포지셔닝과 회피 전략의 구조로 작성하라.'
+            },
+            '판매': {
+                title: 'B2B 신규 시장 진입 전략 및 경쟁사 분석',
+                context: '[특정 산업/지역] 시장에 B2B 제품으로 신규 진입하기 위한 전략 보고서를 작성하세요. 시장 규모, 성장률(CAGR), 주요 고객사 Top 20, 경쟁사 5곳의 가격 정책·강점·약점, 그리고 진입 시 예상되는 진입 장벽(규제·인증·관계 자본)을 종합 분석해야 합니다.',
+                varPlaceholder: '예: 진입 대상은 동남아(베트남·인도네시아) 조선해양 와이어로프 시장. 우리는 일본·유럽 인증을 보유하지만 현지 인증은 없으며, 현지 영업 인력도 부재함. 이 두 가지 핸디캡을 보완하는 진입 모델(파트너십·딜러망)을 구체적으로 제언할 것.',
+                systemPersona: '[Research Persona: Bain & Company Market Entry Strategy Partner & B2B Sales Expert]',
+                task: '보고서는 ① TAM/SAM/SOM 시장 규모 산정 ② 경쟁사 5곳 SWOT 비교 ③ Top 20 잠재 고객 리스트와 접근 우선순위 ④ 12개월 GTM(Go-to-Market) 플랜의 구조로 작성하라.'
+            },
+            '설비': {
+                title: '설비 예지보전(PdM) 도입 케이스 스터디',
+                context: '글로벌 중견 제조 기업이 예지보전(Predictive Maintenance) 시스템을 도입한 사례를 5건 이상 조사하고, 도입 전후의 ① 비계획 다운타임 감소율 ② 정비 비용 변화 ③ 설비 수명 연장 효과를 정량 데이터로 비교 분석한 보고서를 작성하세요. 센서·플랫폼·서비스 공급사별 강약점 비교 매트릭스도 포함해야 합니다.',
+                varPlaceholder: '예: 우리 공장의 핵심 설비는 신선기(伸線機)와 연선기(撚線機)이며, 가동 시간이 길고 진동·온도 데이터가 핵심 지표임. 이 두 설비군에 특화된 예지보전 솔루션 공급사 3곳을 우선 추천하고, 도입 1년 차에 가장 먼저 측정해야 할 KPI 5가지를 제시할 것.',
+                systemPersona: '[Research Persona: Accenture Industry X.0 Lead & Reliability Engineering Expert]',
+                task: '보고서는 ① 도입 사례 5건 상세 비교표 ② 솔루션 공급사 매트릭스(가격·정확도·구축기간) ③ 우리 설비에 맞는 추천 조합 ④ 12개월 KPI 트래킹 플랜의 구조로 작성하라.'
+            },
+            '회계': {
+                title: '동종 업계 재무 벤치마킹 및 비용 구조 분석',
+                context: '국내외 동종 업계 상장사 10곳의 최근 3년간 재무제표(매출·영업이익률·인건비 비중·연구개발비 비중·재고자산회전율 등)를 수집·분석하고, 우리 회사 대비 강점·약점을 도출한 벤치마킹 보고서를 작성하세요. 특히 비용 구조의 효율성과 잠재적 개선 영역을 정량적으로 식별해야 합니다.',
+                varPlaceholder: '예: 우리는 매출 1,500억 원 규모의 와이어로프 제조사이며, 최근 영업이익률이 5%대로 하락 중. 영업이익률 8% 이상을 유지하는 동종 업체들의 비용 구조 특징(특히 원자재·인건비·물류비)을 비교하고, 우리가 가장 빠르게 개선 가능한 영역을 우선순위화할 것.',
+                systemPersona: '[Research Persona: PwC Financial Strategy Director & CFO Advisory Partner]',
+                task: '보고서는 ① 동종 업계 10개사 재무지표 비교표 ② 비용 구조 분해(원가율·판관비율·R&D 비율) ③ 우리 대비 갭(Gap) 분석 ④ 6개월 내 실행 가능한 개선 액션 3가지의 구조로 작성하라.'
+            },
+            '총무': {
+                title: '글로벌 HR 트렌드 및 인재 유지 전략 리서치',
+                context: '제조업 기준 글로벌 Best-in-class 기업들의 최근 3년 인재 유지(Retention) 전략, MZ 세대 이직 사유 Top 10, 그리고 효과가 검증된 복지·교육·평가 제도를 조사하고, 한국 중견 제조업에 적용 가능한 인재 정책 패키지를 도출한 보고서를 작성하세요.',
+                varPlaceholder: '예: 우리 회사의 최근 1년 이직률은 18%로 업계 평균(12%)보다 높으며, 특히 입사 3년 차 이내 사원의 이탈이 심함. 이 연차에 특화된 리텐션 프로그램과 그것을 도입한 실제 기업의 효과 데이터를 우선적으로 제시할 것.',
+                systemPersona: '[Research Persona: Mercer HR Consulting Partner & People Analytics Lead]',
+                task: '보고서는 ① 글로벌 이직 트렌드 데이터 ② 효과 검증된 리텐션 프로그램 Top 10 ③ 한국 중견 제조업 적용성 평가 ④ 12개월 실행 로드맵과 예상 비용의 구조로 작성하라.'
+            }
+        };
+
+        let currentDept = '제조';
+
+        function changeDept(deptName, event) {
+            currentDept = deptName;
+            const data = deptData[deptName];
+
+            // Tab Styling Updates
+            document.querySelectorAll('.dept-btn').forEach(btn => {
+                btn.classList.remove('active', 'bg-blue-600', 'text-white', 'border-blue-600');
+                btn.classList.add('bg-white', 'text-slate-600', 'border-slate-200');
+            });
+
+            if (event && event.target) {
+                event.target.classList.add('active', 'bg-blue-600', 'text-white', 'border-blue-600');
+                event.target.classList.remove('bg-white', 'text-slate-600', 'border-slate-200');
+                event.target.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+            } else {
+                const firstBtn = document.querySelector('.dept-btn');
+                if(firstBtn) {
+                    firstBtn.classList.add('active', 'bg-blue-600', 'text-white', 'border-blue-600');
+                    firstBtn.classList.remove('bg-white', 'text-slate-600', 'border-slate-200');
+                }
+            }
+
+            // Update UI Fields
+            document.getElementById('deptTitleBadge').innerText = data.title;
+            document.getElementById('missionContext').value = data.context;
+            document.getElementById('missionVariable').placeholder = data.varPlaceholder;
+            document.getElementById('missionVariable').value = ''; 
+
+            generatePrompt();
+        }
+
+        function generatePrompt() {
+            const data = deptData[currentDept];
+            const contextInput = document.getElementById('missionContext').value;
+            const variableInput = document.getElementById('missionVariable').value || "[리더의 분석 관점 입력 대기 중. (실행 전 반드시 우리 회사의 맥락이나 제약조건을 한 줄이라도 입력하세요)]";
+            
+            const finalPrompt = `[Role & Persona]
+당신은 McKinsey, BCG, Bain 출신의 '수석 산업 애널리스트'이자 '시니어 리서치 디렉터'입니다. ${data.systemPersona}
+나는 한국 중견 제조 기업의 비즈니스 임원입니다. 단순한 정보 나열이 아니라, 의사결정에 즉시 활용 가능한 인사이트와 실행 권고가 포함된 **출처가 명시된 심층 리서치 보고서**를 작성해 주세요.
+
+[1. Research Objective (조사 목표)]
+${contextInput}
+
+[2. Leader's Angle (반드시 반영할 우리 회사 맥락 및 분석 관점)]
+🚨 필수 반영: ${variableInput}
+
+[3. Methodology & Source Requirements (조사 방법론 및 출처 기준)]
+- [Report Structure] ${data.task}
+- [Source Quality] 1차 자료(공시·논문·관공서·산업협회 보고서)를 최소 60% 이상 인용하고, 모든 통계와 핵심 주장에 출처 링크를 명시하십시오. 블로그·SEO 마케팅 글은 인용을 최소화하십시오.
+- [Cross-Validation] 동일 주장에 대해 가능하면 2개 이상의 독립 출처로 교차 검증된 데이터만 사용하십시오. 단일 출처 정보는 [단일 출처]로 명시하십시오.
+- [Quantitative First] 가능한 모든 주장은 정량 데이터(수치·비율·금액·기간)로 뒷받침하고, 표 또는 차트로 시각화 가능한 형태로 정리하십시오.
+- [Counter-Argument] 핵심 주장이 있다면 반대 근거와 리스크 시나리오도 함께 제시하여 의사결정의 균형을 잡으십시오.
+- [Korea Context] 글로벌 사례를 다룰 때 반드시 한국 시장의 규제·상관습·시장 구조 차이를 명시하고, 적용 시 조정 포인트를 제언하십시오.
+
+[4. Output Rules (🚨 가장 중요한 엄격한 출력 규칙)]
+1. 보고서의 맨 앞에 **Executive Summary (3~5줄)**을 배치하여 핵심 발견과 권고를 먼저 제시하십시오.
+2. 모든 주장 뒤에 **[출처: 기관명, 발행연도, URL]** 형식으로 출처를 명시하십시오.
+3. 마지막에 **'리더가 추가로 물어야 할 질문 5가지'** 섹션을 두어, 이 보고서로 끝내지 말고 후속 리서치 방향까지 제시하십시오.
+4. 단순 정보 요약이 아니라 **'그래서 우리는 무엇을 해야 하는가'**의 So-What 권고로 마무리하십시오.`;
+
+            document.getElementById('finalPromptText').innerText = finalPrompt;
+        }
+
+        // Event Listeners for real-time prompt generation
+        document.getElementById('missionContext').addEventListener('input', generatePrompt);
+        document.getElementById('missionVariable').addEventListener('input', generatePrompt);
+
+        function copyActionPrompt() {
+            const variableInput = document.getElementById('missionVariable').value;
+            if(!variableInput.trim()) {
+                const proceed = confirm("리더님의 'Leader's Angle(분석 관점)'이 입력되지 않았습니다.\n우리 회사의 맥락이나 제약조건을 입력하시면 딥 리서치 보고서의 품질이 극대화됩니다.\n\n기본값으로 복사하고 계속하시겠습니까?");
+                if(!proceed) {
+                    document.getElementById('missionVariable').focus();
+                    return;
+                }
+            }
+
+            const text = document.getElementById('finalPromptText').innerText;
+            const tempElem = document.createElement('textarea');
+            tempElem.value = text;
+            document.body.appendChild(tempElem);
+            tempElem.select();
+            document.execCommand('copy');
+            document.body.removeChild(tempElem);
+            
+            const btn = document.getElementById('actionCopyBtn');
+            const iconHTML = `<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path></svg>`;
+            
+            btn.innerHTML = `${iconHTML} <span>✓ 프롬프트 복사 완료!</span>`;
+            btn.classList.replace('bg-blue-600', 'bg-emerald-600');
+            btn.classList.replace('hover:bg-blue-500', 'hover:bg-emerald-500');
+            
+            setTimeout(() => {
+                const originalIcon = `<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3"></path></svg>`;
+                btn.innerHTML = `${originalIcon} <span>리서치 명령서 복사 후 Gemini 실행</span>`;
+                btn.classList.replace('bg-emerald-600', 'bg-blue-600');
+                btn.classList.replace('hover:bg-emerald-500', 'hover:bg-blue-500');
+                
+                // Open Gemini Deep Research in a new tab
+                window.open('https://gemini.google.com/app', '_blank');
+            }, 2500);
+        }
+
+        // Initial Load
+        window.onload = () => {
+            changeDept('제조', null);
+        };
+    </script>
+</body>
+</html>
