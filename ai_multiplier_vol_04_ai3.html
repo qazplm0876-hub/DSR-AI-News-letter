@@ -1,0 +1,566 @@
+﻿<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>리더의 AI 곱셈법 제4호: 우리 팀의 무기 고르기, AI 3대장</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@100;400;600;700;900&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Pretendard', sans-serif; background-color: #f8fafc; color: #0f172a; }
+        .hero-bg { background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%); }
+        .video-wrapper { position: relative; padding-bottom: 56.25%; height: 0; border-radius: 1.5rem; overflow: hidden; box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04); }
+        .video-wrapper iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
+        .scrollbar-hide::-webkit-scrollbar { display: none; }
+        .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+        
+        /* Smooth interactions */
+        .dept-btn { transition: all 0.2s ease-in-out; }
+        .dept-btn.active { background-color: #0ea5e9; color: white; border-color: #0ea5e9; box-shadow: 0 4px 6px -1px rgba(14, 165, 233, 0.3); }
+        .dept-btn:not(.active):hover { background-color: #f1f5f9; border-color: #cbd5e1; }
+        
+        /* DSR Logo Style */
+        .dsr-logo { font-family: 'Pretendard', sans-serif; font-weight: 900; letter-spacing: -0.05em; display: flex; align-items: center; }
+        .dsr-logo span { color: #0284c7; padding: 0 2px; }
+        .dsr-logo .pipe { color: #cbd5e1; font-weight: 200; margin: 0 4px; }
+    </style>
+</head>
+<body class="overflow-x-hidden selection:bg-blue-200 selection:text-blue-900">
+
+    <nav class="fixed top-0 w-full z-50 px-6 lg:px-10 py-4 flex justify-between items-center bg-white/90 backdrop-blur-md border-b border-slate-200 shadow-sm transition-all">
+        <div class="flex items-center gap-4">
+            <img src="DSR_파란바_배경없음.png" alt="DSR Logo" class="h-8 object-contain" onerror="this.outerHTML='<div class=\'dsr-logo text-3xl\'><span>D</span><span class=\'pipe\'>|</span><span>S</span><span class=\'pipe\'>|</span><span>R</span></div>'">
+            <div class="border-l border-slate-300 pl-4">
+                <span class="text-xl font-black tracking-tight text-slate-900 block leading-none uppercase">AI Multiplier</span>
+                <span class="text-[10px] text-blue-600 font-bold tracking-[0.2em] uppercase">Intelligence for Leaders</span>
+            </div>
+        </div>
+        <div class="hidden md:flex items-center gap-4">
+            <span class="text-xs font-semibold text-slate-500 tracking-wider">Premium Newsletter</span>
+            <div class="text-[11px] font-bold text-slate-700 tracking-widest uppercase bg-slate-100 border border-slate-200 px-4 py-1.5 rounded-full shadow-inner">
+                Phase 1 / Vol. 04
+            </div>
+        </div>
+    </nav>
+
+    <main class="pt-28 pb-24">
+        <section class="hero-bg py-24 px-6 mb-20 border-b border-blue-100/50 relative overflow-hidden">
+            <div class="absolute top-0 left-0 w-full h-full bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0IiBoZWlnaHQ9IjQiPgo8cmVjdCB3aWR0aD0iNCIgaGVpZ2h0PSI0IiBmaWxsPSIjZmZmIiBmaWxsLW9wYWNpdHk9IjAiLz4KPHBhdGggZD0iTTAgMEw0IDRaIiBzdHJva2U9IiM5NGExYjIiIHN0cm9rZS1vcGFjaXR5PSIwLjA1IiBzdHJva2Utd2lkdGg9IjEiLz4KPC9zdmc+')] opacity-50 pointer-events-none"></div>
+            <div class="max-w-5xl mx-auto relative z-10 text-center md:text-left">
+                <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-100/80 text-blue-800 text-[11px] font-black uppercase tracking-widest mb-8 border border-blue-200 shadow-sm backdrop-blur-sm">
+                    Executive Focus
+                </div>
+                <h1 class="text-5xl md:text-7xl font-black mb-8 leading-tight tracking-tight text-slate-900">
+                    AI 3대장
+                    <div class="mt-3">ChatGPT, Gemini, Claude</div>
+                    <div class="mt-6">
+                        <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-sky-500">상황에 맞게</span> 골라 쓰십시오.
+                    </div>
+                </h1>
+                <p class="text-lg md:text-xl text-slate-600 max-w-3xl leading-relaxed font-medium mx-auto md:mx-0">
+                    AI 툴의 스펙 비교는 중요하지 않습니다. <strong class="text-blue-700">중요한 것은</strong> <strong class="text-blue-700">실제 업무 시, 어떤 상황에 어떤 도구를 꺼내야 하냐</strong>입니다. 리더가 알아야 할 상황별 선택 기준을 정리했습니다.
+                </p>
+            </div>
+        </section>
+
+        <section class="max-w-6xl mx-auto px-6 mb-32">
+            <div class="bg-white rounded-[2.5rem] p-8 md:p-14 shadow-[0_20px_50px_-12px_rgba(0,0,0,0.05)] border border-slate-100 relative overflow-hidden">
+                <div class="absolute -top-40 -right-40 w-96 h-96 bg-blue-50 rounded-full blur-3xl z-0"></div>
+                
+                <div class="relative z-10">
+                    <div class="flex items-center gap-3 mb-6">
+                        <div class="w-1 h-8 bg-blue-600 rounded-full"></div>
+                        <h2 class="text-2xl md:text-3xl font-black text-slate-900 tracking-tight">앞으로의 여정: 리더의 AI 전략 로드맵</h2>
+                    </div>
+                    <p class="text-slate-600 mb-12 leading-relaxed max-w-4xl text-lg">
+                        본 리포트는 실무진의 AI 활용 방식을 이해하고, 리더 본인의 전문성을 통해 시스템을 지휘하는 3단계 마스터 로드맵을 제공합니다. 매 호마다 영상 통찰력(Radar), 실무 검증법(해독기), 실전 지휘 미션(Action Lab)이 고정 제공됩니다.
+                    </p>
+                    
+                    <div class="grid lg:grid-cols-3 gap-6">
+                        <!-- Phase 1 -->
+                        <div class="bg-blue-50/50 p-6 rounded-2xl border border-blue-100 relative shadow-sm">
+                            <span class="text-xs font-black uppercase tracking-wider text-blue-600 mb-2 block">Phase 1. 지휘권 확보</span>
+                            <h4 class="text-base font-bold text-slate-900 mb-4 pb-3 border-b border-blue-200">소통의 해상도 높이기</h4>
+                            <ul class="space-y-3 text-sm">
+                                <li class="flex items-start gap-2">
+                                    <strong class="text-slate-400">Vol.01</strong> 
+                                    <span class="text-slate-500 line-through">에이전트를 지휘하는 리더의 내공</span>
+                                </li>
+                                <li class="flex items-start gap-2">
+                                    <strong class="text-slate-400">Vol.02</strong> 
+                                    <span class="text-slate-500 line-through">'바이브 코딩'의 원리와 실체</span>
+                                </li>
+                                <li class="flex items-start gap-2">
+                                    <strong class="text-slate-400">Vol.03</strong> 
+                                    <span class="text-slate-500 line-through">검색의 종말, '딥 리서치' 활용법</span>
+                                </li>
+                                <li class="flex items-center gap-2 relative bg-white p-2 -ml-2 rounded-lg shadow-sm border border-blue-100">
+                                    <span class="absolute -left-1 w-2 h-2 bg-blue-500 rounded-full animate-pulse"></span>
+                                    <strong class="text-blue-700 ml-2">Vol.04</strong> 
+                                    <span class="text-slate-900 font-bold">우리 팀의 무기 고르기 (AI 3대장)</span>
+                                </li>
+                                <li class="flex items-start gap-2"><strong class="text-slate-400">Vol.05</strong> <span class="text-slate-600">AI 시대의 회의법 — 어젠다 설계와 요약</span></li>
+                            </ul>
+                        </div>
+                        <!-- Phase 2 -->
+                        <div class="bg-slate-50 p-6 rounded-2xl border border-slate-200 opacity-80">
+                            <span class="text-xs font-black uppercase tracking-wider text-slate-400 mb-2 block">Phase 2. 자산화</span>
+                            <h4 class="text-base font-bold text-slate-700 mb-4 pb-3 border-b border-slate-200">데이터 시각화와 맞춤 비서</h4>
+                            <ul class="space-y-3 text-sm text-slate-500">
+                                <li class="flex items-start gap-2"><strong>Vol.05</strong> <span>아티팩트로 그리는 직관적 대시보드</span></li>
+                                <li class="flex items-start gap-2"><strong>Vol.06</strong> <span>지식을 복제하는 '프로젝트' 설정</span></li>
+                                <li class="flex items-start gap-2"><strong>Vol.07</strong> <span>우리 팀만의 전문가, 'Gems' 운영</span></li>
+                                <li class="flex items-start gap-2"><strong>Vol.08</strong> <span>흩어진 사내 데이터 통합 (커넥터)</span></li>
+                            </ul>
+                        </div>
+                        <!-- Phase 3 -->
+                        <div class="bg-slate-50 p-6 rounded-2xl border border-slate-200 opacity-80">
+                            <span class="text-xs font-black uppercase tracking-wider text-slate-400 mb-2 block">Phase 3. 시스템화</span>
+                            <h4 class="text-base font-bold text-slate-700 mb-4 pb-3 border-b border-slate-200">자동화와 전략적 의사결정</h4>
+                            <ul class="space-y-3 text-sm text-slate-500">
+                                <li class="flex items-start gap-2"><strong>Vol.09</strong> <span>스스로 보고하는 '슈퍼 젬스' 파이프라인</span></li>
+                                <li class="flex items-start gap-2"><strong>Vol.10</strong> <span>노코드 시스템 엔지니어링 (Opal)</span></li>
+                                <li class="flex items-start gap-2"><strong>Vol.11</strong> <span>최종 결정의 방어벽, 'AI 레드팀'</span></li>
+                                <li class="flex items-start gap-2"><strong>Vol.12</strong> <span>대체 불가능한 리더의 본질</span></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Strategic Radar (Video Section) -->
+        <section class="max-w-6xl mx-auto px-6 mb-32">
+            <div class="grid lg:grid-cols-12 gap-10 lg:gap-16 items-start">
+                <div class="lg:col-span-7">
+                    <div class="bg-white p-2 md:p-3 rounded-[2rem] shadow-2xl border border-slate-100">
+                        <!-- 🚨 영상 ID는 추천 후보 중 선택 후 교체 (현재: placeholder) -->
+                        <div class="video-wrapper bg-slate-100 cursor-pointer group" onclick="window.open('https://youtu.be/i-wvW13Z6lA', '_blank')">
+                            <img src="https://img.youtube.com/vi/i-wvW13Z6lA/maxresdefault.jpg" alt="AI 3대장 비교 영상" class="absolute top-0 left-0 w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
+                            
+                            <div class="absolute inset-0 flex items-center justify-center bg-black/20 group-hover:bg-black/10 transition-all z-10">
+                                <div class="w-16 h-16 bg-red-600 rounded-full flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
+                                    <svg class="w-8 h-8 text-white ml-1" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-6 flex justify-between items-center px-2">
+                        <span class="text-[11px] font-bold text-slate-400 tracking-widest uppercase">Video Insight Source</span>
+                        <span class="text-xs text-slate-500 bg-slate-100 px-3 py-1 rounded-full">카이스트 AI 연구원이 알려주는 AI 3대장 비교</span>
+                    </div>
+                </div>
+                <div class="lg:col-span-5 space-y-8 mt-8 lg:mt-0">
+                    <div>
+                        <div class="inline-block px-3 py-1 bg-blue-50 text-blue-700 text-xs font-black mb-4 rounded-md uppercase tracking-wider border border-blue-100">Strategic Radar</div>
+                        <h3 class="text-3xl font-black mb-6 text-slate-900 leading-tight">셋 다 잘한다,<br>그런데 상황이 다르다</h3>
+                        <p class="text-slate-600 text-base leading-relaxed mb-6">
+                            ChatGPT·Gemini·Claude는 모두 뛰어난 AI입니다. 하지만<br><strong>어떤 업무를, 어떤 환경에서, 무엇을 위해</strong> 쓰느냐에 따라 결과물의 품질이 크게 달라집니다.
+                        </p>
+                        <p class="text-slate-600 text-base leading-relaxed mb-8">
+                            스펙표와 벤치마크는 잊으십시오. 리더에게 필요한 것은 <strong>"오늘 이 상황에서 어떤 도구를 꺼낼 것인가"</strong>를 즉시 판단하는 감각입니다.
+                        </p>
+                    </div>
+                    
+                    <div class="bg-slate-50 rounded-2xl p-6 border border-slate-200 shadow-sm">
+                        <h4 class="text-sm font-bold text-slate-800 uppercase tracking-widest mb-4 border-b border-slate-200 pb-2">The Leader's Role</h4>
+                        <p class="text-sm text-slate-600 leading-relaxed">
+                            AI 도구 선택은 IT 부서의 몫이 아닙니다.<br><br>
+                            어떤 도구가 우리 팀의 업무 흐름에 맞는지, 사내 데이터와 연동이 가능한지를 판단하고 <strong>팀의 AI 활용 기준을 설계하는 것</strong>이 리더의 역할입니다.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Team Workflow 해독기 -->
+        <section class="max-w-6xl mx-auto px-6 mb-32">
+            <div class="bg-slate-900 rounded-[3rem] p-10 md:p-16 shadow-2xl relative overflow-hidden">
+                <div class="absolute top-0 right-0 w-[500px] h-[500px] bg-blue-600/20 rounded-full blur-[100px] -translate-y-1/2 translate-x-1/3"></div>
+                
+                <div class="relative z-10 text-white">
+                    <div class="max-w-3xl mb-12">
+                        <div class="inline-block px-3 py-1 bg-white/10 backdrop-blur-md rounded-full text-blue-300 text-xs font-black mb-6 border border-white/10 uppercase tracking-widest">Team Workflow 해독기</div>
+                        <h2 class="text-3xl md:text-4xl font-black leading-tight tracking-tight mb-4">상황별 AI 선택 기준 '3대 원칙'</h2>
+                        <p class="text-slate-400 text-base leading-relaxed font-light">
+                            어떤 AI가 가장 좋은지는 틀린 질문입니다. "이 상황에서 어떤 AI가 가장 적합한가"가 리더가 물어야 할 질문입니다.
+                        </p>
+                    </div>
+                    <div class="grid md:grid-cols-3 gap-6">
+                        <!-- Gemini -->
+                        <div class="bg-white/5 backdrop-blur-sm border border-white/10 p-7 rounded-3xl transition-transform hover:-translate-y-1 flex flex-col">
+                            <div class="w-10 h-10 rounded-full bg-blue-500/20 text-blue-400 flex items-center justify-center font-black mb-4 text-sm">G</div>
+                            <h4 class="text-white font-black text-sm uppercase tracking-wider mb-1">Gemini</h4>
+                            <p class="text-blue-400 text-xs font-bold mb-5">사내 연동 · Google Workspace</p>
+                            <p class="text-white text-xl font-black leading-snug mb-5">
+                                Google Workspace를<br>팀에서 쓰고 있다면,<br>Gemini입니다.
+                            </p>
+                            <div class="border-t border-white/10 pt-5 mt-auto">
+                                <p class="text-sm text-slate-400 leading-relaxed">
+                                    Gmail·Drive·Docs와 연동되어 우리 회사 자료를 직접 참조합니다. 흩어진 메일, 문서, 회의 맥락을 한 흐름으로 묶어 팀의 현재 상황을 빠르게 파악하는 데 유리합니다.
+                                </p>
+                                <p class="text-xs text-slate-500 mt-3">
+                                    <strong class="text-slate-300">이럴 때:</strong> 내부 보고서 기반 분석, 메일·문서 요약, 구글 문서 초안, 회의 전 자료 파악
+                                </p>
+                            </div>
+                        </div>
+                        <!-- ChatGPT -->
+                        <div class="bg-white/5 backdrop-blur-sm border border-white/10 p-7 rounded-3xl transition-transform hover:-translate-y-1 flex flex-col">
+                            <div class="w-10 h-10 rounded-full bg-blue-500/20 text-blue-400 flex items-center justify-center font-black mb-4 text-sm">C</div>
+                            <h4 class="text-white font-black text-sm uppercase tracking-wider mb-1">ChatGPT</h4>
+                            <p class="text-blue-400 text-xs font-bold mb-5">아이디어 실행 · Codex · 결과물 제작</p>
+                            <p class="text-white text-xl font-black leading-snug mb-5">
+                                아이디어를<br>실행으로 바꿔야 한다면,<br>ChatGPT입니다.
+                            </p>
+                            <div class="border-t border-white/10 pt-5 mt-auto">
+                                <p class="text-sm text-slate-400 leading-relaxed">
+                                    말로 끝나는 조언보다 실제 산출물 제작에 강합니다. Codex와 함께 쓰면 HTML·문서·코드 파일을 직접 고치고 결과를 검증할 수 있습니다.
+                                </p>
+                                <p class="text-xs text-slate-500 mt-3">
+                                    <strong class="text-slate-300">이럴 때:</strong> 업무 자동화, 데이터 정리, 보고서 초안 구조화, 사내 도구 프로토타입
+                                </p>
+                            </div>
+                        </div>
+                        <!-- Claude -->
+                        <div class="bg-white/5 backdrop-blur-sm border border-white/10 p-7 rounded-3xl transition-transform hover:-translate-y-1 flex flex-col">
+                            <div class="w-10 h-10 rounded-full bg-blue-500/20 text-blue-400 flex items-center justify-center font-black mb-4 text-sm">Cl</div>
+                            <h4 class="text-white font-black text-sm uppercase tracking-wider mb-1">Claude</h4>
+                            <p class="text-blue-400 text-xs font-bold mb-5">문서 분석 · 논리적 글쓰기</p>
+                            <p class="text-white text-xl font-black leading-snug mb-5">
+                                계약서·보고서·회의록<br>등 긴 문서를 다뤄야<br>한다면, Claude입니다.
+                            </p>
+                            <div class="border-t border-white/10 pt-5 mt-auto">
+                                <p class="text-sm text-slate-400 leading-relaxed">
+                                    긴 문서를 한 번에 읽고 논리적으로 재구성하는 능력이 셋 중 가장 탁월합니다. 계약·정책·RFP처럼 근거와 표현을 함께 검토해야 하는 작업에서 문맥을 놓치지 않습니다.
+                                </p>
+                                <p class="text-xs text-slate-500 mt-3">
+                                    <strong class="text-slate-300">이럴 때:</strong> 계약서·RFP 검토, 제안서 초안, 임원 보고용 문서, 긴 회의록 재구성
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Action Lab -->
+        <section class="max-w-6xl mx-auto px-6">
+            <div class="mb-12 text-center md:text-left flex flex-col md:flex-row items-center justify-between gap-6">
+                <div>
+                    <div class="inline-flex items-center gap-2 px-3 py-1 bg-blue-600 rounded-lg text-white text-[11px] font-black mb-4 uppercase tracking-widest shadow-md">
+                        <span class="relative flex h-2 w-2">
+                          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-200 opacity-75"></span>
+                          <span class="relative inline-flex rounded-full h-2 w-2 bg-white"></span>
+                        </span>
+                        Action Lab: 오늘의 지휘 미션
+                    </div>
+                    <h2 class="text-3xl md:text-4xl font-black tracking-tight text-slate-900 mb-2">우리 팀 상황에 맞는 'AI 도구 선택 프롬프트' 설계하기</h2>
+                    <p class="text-slate-600 text-lg">부서별 실제 업무 상황을 입력하면, <strong>어떤 AI를 어떻게 쓸지</strong> 바로 판단할 수 있는 프롬프트를 설계해 드립니다.</p>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-[2rem] shadow-[0_20px_50px_-12px_rgba(0,0,0,0.1)] border border-slate-200 overflow-hidden flex flex-col lg:flex-row">
+                
+                <!-- Left: Inputs -->
+                <div class="w-full lg:w-5/12 bg-slate-50 p-6 md:p-10 border-b lg:border-b-0 lg:border-r border-slate-200 flex flex-col">
+                    
+                    <div class="mb-8">
+                        <label class="text-xs font-black text-slate-500 uppercase tracking-widest mb-3 block">1. 담당 부서 선택</label>
+                        <div class="flex overflow-x-auto pb-2 scrollbar-hide gap-2 mask-linear-fade">
+                            <button onclick="changeDept('제조', event)" class="dept-btn shrink-0 px-4 py-2 rounded-xl text-sm font-bold border bg-white text-slate-600 border-slate-200 active">🏭 제조/생산</button>
+                            <button onclick="changeDept('품질', event)" class="dept-btn shrink-0 px-4 py-2 rounded-xl text-sm font-bold border bg-white text-slate-600 border-slate-200">🔎 품질관리</button>
+                            <button onclick="changeDept('기술', event)" class="dept-btn shrink-0 px-4 py-2 rounded-xl text-sm font-bold border bg-white text-slate-600 border-slate-200">💡 기술/R&D</button>
+                            <button onclick="changeDept('판매', event)" class="dept-btn shrink-0 px-4 py-2 rounded-xl text-sm font-bold border bg-white text-slate-600 border-slate-200">🤝 판매/영업</button>
+                            <button onclick="changeDept('설비', event)" class="dept-btn shrink-0 px-4 py-2 rounded-xl text-sm font-bold border bg-white text-slate-600 border-slate-200">⚙️ 설비/보전</button>
+                            <button onclick="changeDept('회계', event)" class="dept-btn shrink-0 px-4 py-2 rounded-xl text-sm font-bold border bg-white text-slate-600 border-slate-200">📊 회계/재무</button>
+                            <button onclick="changeDept('총무', event)" class="dept-btn shrink-0 px-4 py-2 rounded-xl text-sm font-bold border bg-white text-slate-600 border-slate-200">👥 총무/인사</button>
+                        </div>
+                    </div>
+
+                    <div class="space-y-6 flex-grow">
+                        <div>
+                            <label class="text-xs font-black text-slate-500 uppercase tracking-widest mb-2 block flex items-center justify-between">
+                                <span>2. Research Topic (조사 주제)</span>
+                                <span id="deptTitleBadge" class="bg-slate-200 text-slate-600 text-[10px] px-2 py-0.5 rounded">조사 주제</span>
+                            </label>
+                            <textarea id="missionContext" rows="4" class="w-full p-4 text-sm text-slate-700 bg-white border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:outline-none resize-none shadow-sm"></textarea>
+                        </div>
+
+                        <div>
+                            <label class="text-xs font-black text-blue-600 uppercase tracking-widest mb-2 block">
+                                3. Leader's Angle (리더의 분석 관점)
+                            </label>
+                            <p class="text-[11px] text-slate-500 mb-2 leading-tight">단순 정보 나열이 아니라, 리더의 의사결정에 필요한 특정 관점이나 제약조건을 입력하십시오. (우측 프롬프트에 실시간 반영)</p>
+                            <textarea id="missionVariable" rows="3" class="w-full p-4 text-sm text-slate-900 bg-blue-50/50 border border-blue-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:outline-none resize-none placeholder-slate-400 shadow-sm transition-all"></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right: Output Prompt (Terminal Style) -->
+                <div class="w-full lg:w-7/12 bg-[#0f172a] p-6 md:p-10 flex flex-col relative">
+                    <div class="flex items-center justify-between mb-6">
+                        <label class="text-xs font-black text-slate-400 uppercase tracking-widest flex items-center gap-2">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path></svg>
+                            Deep Research Prompt (For Gemini / ChatGPT / Claude)
+                        </label>
+                        <span class="text-[10px] text-blue-400 bg-blue-400/10 border border-blue-400/20 px-2 py-0.5 rounded font-mono">Research Director Level</span>
+                    </div>
+                    
+                    <div class="flex-grow relative">
+                        <pre id="finalPromptText" class="text-[13px] text-slate-300 font-mono whitespace-pre-wrap leading-relaxed overflow-y-auto scrollbar-hide h-64 lg:h-[400px] w-full focus:outline-none selection:bg-blue-500/30 selection:text-white pb-10"></pre>
+                        <div class="absolute bottom-0 left-0 w-full h-12 bg-gradient-to-t from-[#0f172a] to-transparent pointer-events-none"></div>
+                    </div>
+                    
+                    <div class="mt-6 pt-6 border-t border-slate-800 flex justify-end shrink-0">
+                        <button onclick="copyActionPrompt()" id="actionCopyBtn" class="w-full md:w-auto px-8 py-3.5 bg-blue-600 hover:bg-blue-500 text-white text-sm font-bold rounded-xl transition-all shadow-[0_0_20px_rgba(37,99,235,0.3)] flex items-center justify-center gap-2">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3"></path></svg>
+                            <span>프롬프트 복사 후 AI 실행</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 실행 가이드 섹션: AI 3대장 핵심 기능 상세 -->
+            <div class="mt-12 bg-white border border-blue-100 rounded-[2rem] p-8 lg:p-10 shadow-[0_10px_40px_-15px_rgba(0,0,0,0.05)] relative overflow-hidden">
+                <div class="absolute top-0 right-0 w-48 h-48 bg-blue-50 rounded-full blur-3xl -mr-10 -mt-10 pointer-events-none"></div>
+                <div class="flex items-center gap-4 mb-8 border-b border-slate-100 pb-5 relative z-10">
+                    <div class="w-12 h-12 rounded-2xl bg-blue-50 border border-blue-100 flex items-center justify-center text-blue-600 shadow-sm shrink-0">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                    </div>
+                    <div>
+                        <h3 class="text-xl md:text-2xl font-black text-slate-900 tracking-tight">💡 AI 3대장 핵심 기능 상세 가이드</h3>
+                        <p class="text-sm md:text-base text-slate-500 mt-1 font-medium">각 AI가 "이건 진짜 우리만 할 수 있다"라고 자신 있게 내세우는 핵심 기능입니다.</p>
+                    </div>
+                </div>
+                <div class="grid md:grid-cols-3 gap-6 relative z-10">
+
+                    <!-- Gemini -->
+                    <div class="space-y-3 bg-slate-50/50 p-6 rounded-2xl border border-slate-100">
+                        <div class="inline-block px-3 py-1.5 bg-emerald-50 text-emerald-700 text-xs font-black tracking-wider rounded-lg border border-emerald-200 uppercase">Gemini</div>
+                        <h4 class="text-lg font-bold text-slate-800">캔버스 + 사내문서 연동</h4>
+                        <p class="text-sm text-slate-600 leading-relaxed">
+                            <strong>Gmail · Drive 사내문서 연동</strong><br>
+                            구글 계정과 연결되어 입력창에서 <strong>@</strong>로 사내 메일·문서·시트를 직접 불러와 분석합니다. "지난주 영업회의 메일과 거래처 자료를 종합해 보고서 만들어줘" 같은 작업이 가능합니다.
+                        </p>
+                        <p class="text-sm text-slate-600 leading-relaxed">
+                            <strong>캔버스(Canvas)</strong><br>
+                            대화창 옆에 문서 편집 화면이 함께 떠서, AI와 같은 문서를 보며 실시간으로 수정·다듬을 수 있습니다. 워드 작업 → 결과 확인 → 다시 수정 흐름이 한 화면에서 완결됩니다.
+                        </p>
+                        <div class="mt-4 p-3 bg-white border border-slate-200 rounded-xl text-xs text-slate-600 shadow-sm">
+                            <strong class="text-emerald-700">접속:</strong> <a href="https://gemini.google.com" target="_blank" class="text-emerald-600 hover:underline font-medium">gemini.google.com</a>
+                        </div>
+                    </div>
+
+                    <!-- ChatGPT -->
+                    <div class="space-y-3 bg-slate-50/50 p-6 rounded-2xl border border-slate-100">
+                        <div class="inline-block px-3 py-1.5 bg-blue-50 text-blue-700 text-xs font-black tracking-wider rounded-lg border border-blue-200 uppercase">ChatGPT</div>
+                        <h4 class="text-lg font-bold text-slate-800">에이전트 모드</h4>
+                        <p class="text-sm text-slate-600 leading-relaxed">
+                            <strong>'답변'이 아닌 '실행'</strong><br>
+                            ChatGPT 에이전트는 가상 브라우저를 직접 띄워 <strong>웹 검색 → 자료 분석 → 보고서·슬라이드 생성</strong>까지 스스로 수행합니다.
+                        </p>
+                        <p class="text-sm text-slate-600 leading-relaxed">
+                            <strong>활용 예시</strong><br>
+                            "경쟁사 3곳 분석해서 PPT 만들어줘" → 직접 웹사이트 들어가서 정보 수집, 비교표 정리, 슬라이드 완성. "다음 주 출장 호텔 예약 화면까지 띄워줘" → 검색·필터링·결제 직전까지 처리.
+                        </p>
+                        <div class="mt-4 p-3 bg-white border border-slate-200 rounded-xl text-xs text-slate-600 shadow-sm">
+                            <strong class="text-blue-700">접속:</strong> <a href="https://chatgpt.com" target="_blank" class="text-blue-600 hover:underline font-medium">chatgpt.com</a>
+                        </div>
+                    </div>
+
+                    <!-- Claude -->
+                    <div class="space-y-3 bg-slate-50/50 p-6 rounded-2xl border border-slate-100">
+                        <div class="inline-block px-3 py-1.5 bg-orange-50 text-orange-700 text-xs font-black tracking-wider rounded-lg border border-orange-200 uppercase">Claude</div>
+                        <h4 class="text-lg font-bold text-slate-800">데이터 분석 및 전문 문서 파악</h4>
+                        <p class="text-sm text-slate-600 leading-relaxed">
+                            <strong>데이터 분석 및 시각화 전문</strong><br>
+                            엑셀·CSV 파일을 올리면 <strong>수식 작성 없이도</strong> 전문가 수준의 다각도 데이터 분석을 수행합니다. 로우 데이터 속 복잡한 패턴을 빠르게 식별하고, 비즈니스에 직관적인 시각화 자료와 정밀한 분석 코멘트를 도출하는 능력이 뛰어난 AI입니다.
+                        </p>
+                        <p class="text-sm text-slate-600 leading-relaxed">
+                            <strong>전문 규정 및 계약 검토</strong><br>
+                            계약서·내부 규정·법령 등 수백 페이지에 달하는 방대한 전문 문서를 한 번에 심층 분석할 수 있습니다. 문장 사이의 미묘한 논리 흐름과 비즈니스 컨텍스트를 정확하게 짚어내며, 구조적이고 정교한 문서 요약에 가장 강력한 면모를 보입니다.
+                        </p>
+                        <div class="mt-4 p-3 bg-white border border-slate-200 rounded-xl text-xs text-slate-600 shadow-sm">
+                            <strong class="text-orange-700">접속:</strong> <a href="https://claude.ai" target="_blank" class="text-orange-600 hover:underline font-medium">claude.ai</a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </section>
+    </main>
+
+    <footer class="py-12 px-8 bg-slate-900 text-white border-t border-slate-800">
+        <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
+            <div class="flex flex-col items-center md:items-start">
+                <div class="bg-white px-3 py-1.5 rounded-md mb-4 inline-block">
+                    <img src="DSR_파란바_배경없음.png" alt="DSR Logo" class="h-6 object-contain" onerror="this.outerHTML='<span class=\'text-blue-600 font-black\'>D|S|R</span>'">
+                </div>
+                <p class="text-sm text-slate-400 max-w-md text-center md:text-left leading-relaxed">
+                    본 리포트는 DSR 리더의 전략적 성장을 위해 발행됩니다. 어떤 AI가 최고인지보다, 우리 팀의 업무에 맞는 도구를 선택하고 활용하는 리더의 판단력이 진짜 경쟁력입니다.
+                </p>
+            </div>
+            <div class="text-[11px] text-slate-500 tracking-widest font-semibold text-center md:text-right uppercase leading-loose">
+                Copyright © 2026 DSR Corp. & DSR Wire Corp.<br>All Rights Reserved.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const deptData = {
+            '제조': {
+                title: '생산·품질 업무 AI 선택',
+                context: '제조 현장에서 발생하는 다음 업무들을 처리하려 합니다:\n- 글로벌 경쟁사의 스마트팩토리 도입 사례 조사\n- 설비 이상 보고서 초안 작성\n- 생산 일지 데이터를 바탕으로 월간 품질 트렌드 분석',
+                varPlaceholder: '예: 우리 팀은 구글 드라이브로 문서를 공유하며, 주로 품질 이상 보고서와 거래처 대응 메일을 자주 씁니다.',
+                systemPersona: '[AI Tool: Gemini / ChatGPT / Claude 상황별 추천]',
+                task: '각 업무별로 Gemini·ChatGPT·Claude 중 어떤 도구가 가장 적합한지, 그 이유와 함께 추천하고 실제 사용할 수 있는 프롬프트를 제시하라.'
+            },
+            '품질': {
+                title: '검사·분석 업무 AI 선택',
+                context: '품질팀에서 처리하는 다음 업무들을 AI로 효율화하려 합니다:\n- 불량 유형별 원인 분석 보고서 작성\n- 고객 클레임 대응 메일 초안\n- 국내외 품질 규격(ISO, KS) 관련 자료 조사',
+                varPlaceholder: '예: 고객사에 제출하는 8D 보고서와 시정조치 문서를 자주 작성하며, 영문 보고서도 간혹 필요합니다.',
+                systemPersona: '[AI Tool: Gemini / ChatGPT / Claude 상황별 추천]',
+                task: '각 업무별로 Gemini·ChatGPT·Claude 중 어떤 도구가 가장 적합한지, 그 이유와 함께 추천하고 실제 사용할 수 있는 프롬프트를 제시하라.'
+            },
+            '기술': {
+                title: 'R&D·기술 업무 AI 선택',
+                context: '기술팀에서 처리하는 다음 업무들을 AI로 효율화하려 합니다:\n- 특허·논문 트렌드 조사 및 요약\n- 기술 제안서·연구보고서 초안 작성\n- 경쟁사 기술 동향 분석',
+                varPlaceholder: '예: 영문 논문을 자주 읽어야 하고, 특허 명세서 초안이나 기술 발표 자료도 만듭니다.',
+                systemPersona: '[AI Tool: Gemini / ChatGPT / Claude 상황별 추천]',
+                task: '각 업무별로 Gemini·ChatGPT·Claude 중 어떤 도구가 가장 적합한지, 그 이유와 함께 추천하고 실제 사용할 수 있는 프롬프트를 제시하라.'
+            },
+            '판매': {
+                title: '영업·마케팅 업무 AI 선택',
+                context: '영업팀에서 처리하는 다음 업무들을 AI로 효율화하려 합니다:\n- 신규 거래처 발굴을 위한 시장·경쟁사 조사\n- 제안서·견적서 초안 작성\n- 고객 미팅 후 회의록 요약 및 후속 메일 작성',
+                varPlaceholder: '예: 해외 바이어 대응이 잦고, 영문 제안서와 이메일을 자주 작성합니다.',
+                systemPersona: '[AI Tool: Gemini / ChatGPT / Claude 상황별 추천]',
+                task: '각 업무별로 Gemini·ChatGPT·Claude 중 어떤 도구가 가장 적합한지, 그 이유와 함께 추천하고 실제 사용할 수 있는 프롬프트를 제시하라.'
+            },
+            '설비': {
+                title: '설비·보전 업무 AI 선택',
+                context: '설비팀에서 처리하는 다음 업무들을 AI로 효율화하려 합니다:\n- 설비 고장 원인 분석 및 정비 이력 보고서 작성\n- 예지보전 관련 글로벌 사례 조사\n- 설비 구매를 위한 벤더 비교 자료 작성',
+                varPlaceholder: '예: 설비 매뉴얼(일본어·영어)을 번역하거나 요약할 일이 많고, 정기 점검 보고서를 월 1회 작성합니다.',
+                systemPersona: '[AI Tool: Gemini / ChatGPT / Claude 상황별 추천]',
+                task: '각 업무별로 Gemini·ChatGPT·Claude 중 어떤 도구가 가장 적합한지, 그 이유와 함께 추천하고 실제 사용할 수 있는 프롬프트를 제시하라.'
+            },
+            '회계': {
+                title: '재무·회계 업무 AI 선택',
+                context: '재무팀에서 처리하는 다음 업무들을 AI로 효율화하려 합니다:\n- 동종 업계 재무 벤치마킹 자료 조사\n- 월간 손익 보고서 코멘트 초안 작성\n- 세무·회계 관련 법령 및 규정 검색',
+                varPlaceholder: '예: 경영진에게 매월 보고하는 손익 분석 코멘트와 예산 대비 실적 자료를 주로 작성합니다.',
+                systemPersona: '[AI Tool: Gemini / ChatGPT / Claude 상황별 추천]',
+                task: '각 업무별로 Gemini·ChatGPT·Claude 중 어떤 도구가 가장 적합한지, 그 이유와 함께 추천하고 실제 사용할 수 있는 프롬프트를 제시하라.'
+            },
+            '총무': {
+                title: 'HR·총무 업무 AI 선택',
+                context: 'HR·총무팀에서 처리하는 다음 업무들을 AI로 효율화하려 합니다:\n- 채용 공고·면접 질문 초안 작성\n- 사내 규정·정책 문서 정리 및 요약\n- 임직원 교육 자료 및 사내 공지 초안 작성',
+                varPlaceholder: '예: 사내 공지문, 채용 JD, 복지 안내 등 글을 자주 써야 하고, 노무 관련 법령도 종종 확인합니다.',
+                systemPersona: '[AI Tool: Gemini / ChatGPT / Claude 상황별 추천]',
+                task: '각 업무별로 Gemini·ChatGPT·Claude 중 어떤 도구가 가장 적합한지, 그 이유와 함께 추천하고 실제 사용할 수 있는 프롬프트를 제시하라.'
+            }
+        };
+
+        let currentDept = '제조';
+
+        function changeDept(deptName, event) {
+            currentDept = deptName;
+            const data = deptData[deptName];
+
+            document.querySelectorAll('.dept-btn').forEach(btn => {
+                btn.classList.remove('active', 'bg-blue-600', 'text-white', 'border-blue-600');
+                btn.classList.add('bg-white', 'text-slate-600', 'border-slate-200');
+            });
+
+            if (event && event.target) {
+                event.target.classList.add('active', 'bg-blue-600', 'text-white', 'border-blue-600');
+                event.target.classList.remove('bg-white', 'text-slate-600', 'border-slate-200');
+                event.target.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+            } else {
+                const firstBtn = document.querySelector('.dept-btn');
+                if(firstBtn) {
+                    firstBtn.classList.add('active', 'bg-blue-600', 'text-white', 'border-blue-600');
+                    firstBtn.classList.remove('bg-white', 'text-slate-600', 'border-slate-200');
+                }
+            }
+
+            document.getElementById('deptTitleBadge').innerText = data.title;
+            document.getElementById('missionContext').value = data.context;
+            document.getElementById('missionVariable').placeholder = data.varPlaceholder;
+            document.getElementById('missionVariable').value = '';
+            generatePrompt();
+        }
+
+        function generatePrompt() {
+            const data = deptData[currentDept];
+            const contextInput = document.getElementById('missionContext').value;
+            const variableInput = document.getElementById('missionVariable').value || "[우리 팀의 주요 업무 맥락을 입력하면 더 정확한 추천을 받을 수 있습니다]";
+
+            const finalPrompt = `[Role & Persona]
+당신은 AI 도구 도입 전략을 전문으로 하는 컨설턴트입니다.
+나는 한국 중견 제조기업의 팀장/임원으로, 팀에 AI를 도입하려 하지만 ChatGPT·Gemini·Claude 중 어떤 것을 언제 써야 할지 판단이 서지 않습니다.
+
+[1. 우리 팀의 주요 업무]
+${contextInput}
+
+[2. 우리 팀의 업무 맥락 및 환경]
+${variableInput}
+
+[3. 요청 사항]
+${data.task}
+
+[4. 출력 형식]
+각 업무에 대해 아래 형식으로 답해주세요:
+
+업무명: [업무]
+→ 추천 도구: [Gemini / ChatGPT / Claude]
+→ 추천 이유: (2~3줄, 구체적으로)
+→ 바로 쓸 수 있는 프롬프트:
+"[실제 입력 프롬프트 예시]"
+
+마지막에 우리 팀 전체를 위한 'AI 도구 사용 원칙 3줄 요약'도 작성해 주세요.`;
+
+            document.getElementById('finalPromptText').innerText = finalPrompt;
+        }
+        function copyActionPrompt() {
+            const variableInput = document.getElementById('missionVariable').value;
+            if(!variableInput.trim()) {
+                const proceed = confirm("리더님의 'Leader's Angle(분석 관점)'이 입력되지 않았습니다.\n우리 회사의 맥락이나 제약조건을 입력하시면 딥 리서치 보고서의 품질이 극대화됩니다.\n\n기본값으로 복사하고 계속하시겠습니까?");
+                if(!proceed) {
+                    document.getElementById('missionVariable').focus();
+                    return;
+                }
+            }
+
+            const text = document.getElementById('finalPromptText').innerText;
+            const tempElem = document.createElement('textarea');
+            tempElem.value = text;
+            document.body.appendChild(tempElem);
+            tempElem.select();
+            document.execCommand('copy');
+            document.body.removeChild(tempElem);
+            
+            const btn = document.getElementById('actionCopyBtn');
+            const iconHTML = `<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path></svg>`;
+            
+            btn.innerHTML = `${iconHTML} <span>✓ 프롬프트 복사 완료!</span>`;
+            btn.classList.replace('bg-blue-600', 'bg-emerald-600');
+            btn.classList.replace('hover:bg-blue-500', 'hover:bg-emerald-500');
+            
+            setTimeout(() => {
+                const originalIcon = `<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3"></path></svg>`;
+                btn.innerHTML = `${originalIcon} <span>리서치 명령서 복사 후 Gemini 실행</span>`;
+                btn.classList.replace('bg-emerald-600', 'bg-blue-600');
+                btn.classList.replace('hover:bg-emerald-500', 'hover:bg-blue-500');
+                
+                // Open Gemini Deep Research in a new tab
+                window.open('https://gemini.google.com/app', '_blank');
+            }, 2500);
+        }
+
+        // Initial Load
+        window.onload = () => {
+            changeDept('제조', null);
+        };
+    </script>
+</body>
+</html>
